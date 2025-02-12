@@ -2,7 +2,7 @@
 # Run Super-Linter for Java Codebase #
 ##################################################
 
-name: Java Super Linter
+name: Mr Coxall's Super Linter
 
 on: [push, pull_request]
 
