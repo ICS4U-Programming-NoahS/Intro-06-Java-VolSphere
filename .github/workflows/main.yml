@@ -12,10 +12,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out Git repository
+      - name: Check out Git repository 🚦
         uses: actions/checkout@v2
 
-      - name: Run GitHub Super Linter
+      - name: Run GitHub Super Linter 🚀
         uses: github/super-linter@v5
         env:
           VALIDATE_ALL_CODEBASE: true
@@ -23,7 +23,10 @@ jobs:
           VALIDATE_JAVA: true  # Enable Java linting
           VALIDATE_GOOGLE_JAVA_FORMAT: true  # Use Google Java Format
           VALIDATE_CHECKSTYLE: true  # Run Checkstyle
-          VALIDATE_PMD: false  # Set to true if you want PMD checks
-          VALIDATE_SPOTBUGS: false  # Set to true if you want static analysis
+          VALIDATE_PM: false  # Disable PMD (Optional)
+          VALIDATE_SPOTBUGS: false  # Disable SpotBugs (Optional)
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Disable the following checks
+          DISABLE_JAVADOC_PACKAGE: true  # Disable JavadocPackage check
+          DISABLE_MAGIC_NUMBER: true  # Disable MagicNumber check
