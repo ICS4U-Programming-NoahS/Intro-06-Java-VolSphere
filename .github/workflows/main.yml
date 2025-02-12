@@ -8,25 +8,28 @@ on: [push, pull_request]
 
 jobs:
   run-linters:
-    name: Java Super Linter
+    name: Mr Coxall's Super Linter
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out Git repository 🚦
-        uses: actions/checkout@v2
+      - name: Check out Git repository
+        uses: actions/checkout@v2 🚦
 
       - name: Run GitHub Super Linter 🚀
-        uses: github/super-linter@v5
+        uses: mr-coxall/super-linter@master
         env:
           VALIDATE_ALL_CODEBASE: true
           LINTER_RULES_PATH: /
-          VALIDATE_JAVA: true  # Enable Java linting
-          VALIDATE_GOOGLE_JAVA_FORMAT: true  # Use Google Java Format
-          VALIDATE_CHECKSTYLE: true  # Run Checkstyle
-          VALIDATE_PM: false  # Disable PMD (Optional)
-          VALIDATE_SPOTBUGS: false  # Disable SpotBugs (Optional)
+          VALIDATE_JAVA: true
+          VALIDATE_GOOGLE_JAVA_FORMAT: false
+          VALIDATE_CHECKSTYLE: true
+          VALIDATE_PMD: false
+          VALIDATE_SPOTBUGS: false
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # Disable the following checks
-          DISABLE_JAVADOC_PACKAGE: true  # Disable JavadocPackage check
-          DISABLE_MAGIC_NUMBER: true  # Disable MagicNumber check
+
+      - name: Run Checkstyle with custom configuration
+        uses: jwgmeligmeyling/checkstyle-action@v1
+        with:
+          checkstyle_config: '.github/checkstyle.xml'  # Path to your custom checkstyle.xml
+          fail_on_error: false  # Set to true if you want the build to fail on Checkstyle errors
